@@ -1,5 +1,5 @@
 [workspace]
-members = ["chat_client","chat_server"]
+members = ["chat_client", "chat_common","chat_server"]
 
 resolver = "2"
 

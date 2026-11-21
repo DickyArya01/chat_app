@@ -44,7 +44,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
             result = stdin_lines.next_line() => {
                 match result? {
                     Some(line) => {
-                        writer.write_all(line.as_bytes()).await?;
+                        let line = line.trim();
+
+                        match line {
+                            "/quit" => break,
+                            "/help" => println!("/quit: Close chat\n/help: Show help"),
+                            line => writer.write_all(line.as_bytes()).await?
+
+                        };
                         // writer.write_all(b"\n").await?;
                     }
                     None => { break; }
