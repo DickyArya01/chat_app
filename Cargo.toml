@@ -1,0 +1,7 @@
+[workspace]
+members = ["chat_client","chat_server"]
+
+resolver = "2"
+
+[workspace.dependencies]
+tokio = { version = "1.54.1", features = ["full"] }
