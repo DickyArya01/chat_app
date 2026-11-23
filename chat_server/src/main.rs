@@ -40,13 +40,15 @@ async fn handle_client(
     let user_id = UserIdTag::new(&addr).hash();
 
     let enter_chat_notif_msg = ChatMessage{
-        id: 0,
+        id: user_id,
         username: "".to_string(),
         content: format!("{} enter the chat", username),
         message_type: MessageType::SystemNotification
     };
 
     writer.write_all(enter_chat_notif_msg.to_chat_str().as_bytes()).await.unwrap();
+    
+    tx.send(enter_chat_notif_msg).unwrap();
 
     loop {
         tokio::select! {
